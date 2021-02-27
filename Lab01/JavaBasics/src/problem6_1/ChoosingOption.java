@@ -1,4 +1,4 @@
-package problem6_1;
+package JavaBasics.src.problem6_1;
 import javax.swing.JOptionPane;
 public class ChoosingOption {
 
@@ -12,9 +12,9 @@ public class ChoosingOption {
 		JOptionPane.showMessageDialog(null, "You've chosen: "
 				+(option==JOptionPane.YES_OPTION?"Yes":"No"));
 		
-		// only 2 options: YES and NO
+		// only 2 options: YES and NO  (0) it's another method with 4 variables
 		JOptionPane.showConfirmDialog(null,"Do you want to change to the first class ticket" , 
-				"2 options YES and NO only", 0);
+				"2 options YES and NO only (0) it's another method with 4 variables", 0);
 		System.exit(0);
         
 	}
