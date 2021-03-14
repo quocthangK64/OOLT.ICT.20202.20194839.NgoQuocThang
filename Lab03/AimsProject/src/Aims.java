@@ -14,9 +14,12 @@ public class Aims {
 		
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
 				"Animation", 18.99f);
+		// constructor without cost. So cost will be 0 
+	    DigitalVideoDisc dvd4 = new DigitalVideoDisc("Ironman");
 		// check totalCost and removeDVD
 		anOrder.addDigitalVideoDisc(dvd1);
 		anOrder.addDigitalVideoDisc(dvd2);
+		anOrder.addDigitalVideoDisc(dvd4);
 		anOrder.removeDigitalVideoDisc(dvd1);
 		anOrder.removeDigitalVideoDisc(dvd2);
 		anOrder.removeDigitalVideoDisc(dvd3);
