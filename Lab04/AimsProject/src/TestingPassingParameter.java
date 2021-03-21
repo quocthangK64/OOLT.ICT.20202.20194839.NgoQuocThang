@@ -1,3 +1,9 @@
+class DVDWrapper{ 
+	   DigitalVideoDisc disc; 
+	   DVDWrapper(DigitalVideoDisc disc){
+		   this.disc = disc;
+       } 
+} 
 
 public class TestingPassingParameter {
 
@@ -5,19 +11,20 @@ public class TestingPassingParameter {
 		// TODO Auto-generated method stub
 		DigitalVideoDisc jungleDVD = new DigitalVideoDisc("Jungle");
 		DigitalVideoDisc cinderellaDVD = new DigitalVideoDisc("Cinderella");
-		
-		swap(jungleDVD, cinderellaDVD);
-		System.out.println("jungle dvd title: " + jungleDVD.getTitle());
-		System.out.println("cinderella dvd title: " + cinderellaDVD.getTitle());
-		
+		DVDWrapper dw1 = new DVDWrapper(jungleDVD); 
+        DVDWrapper dw2 = new DVDWrapper(cinderellaDVD); 
+		swap(dw1, dw2);
+		System.out.println("jungle dvd title: " + dw1.disc.getTitle());
+		System.out.println("cinderella dvd title: " + dw2.disc.getTitle());
 		changeTitle(jungleDVD, cinderellaDVD.getTitle());
 		System.out.println("jungle dvd title: " + jungleDVD.getTitle());
 	}
-
-	public static void swap(Object o1, Object o2) {
-		Object tmp = o1;
-		o1 = o2;
-		o2 = tmp;
+	
+	// rewrite a swap() method
+	public static void swap(DVDWrapper dw1, DVDWrapper dw2) {
+    	DigitalVideoDisc tmp = dw1.disc;
+    	dw1.disc = dw2.disc;
+    	dw2.disc = tmp;
 	}
 	
 	public static void changeTitle(DigitalVideoDisc dvd, String title) {

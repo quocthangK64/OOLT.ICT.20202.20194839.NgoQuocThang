@@ -1,4 +1,5 @@
-import javax.swing.JOptionPane;
+import java.util.Comparator;
+import java.util.Arrays;
 public class Cart {
 	
 	public static final int MAX_NUMBERS_ORDERED = 20;
@@ -25,9 +26,9 @@ public class Cart {
 		if(QtyOrdered < MAX_NUMBERS_ORDERED) {
 			itemOrdered[QtyOrdered] = disc;
 			QtyOrdered++;
-			JOptionPane.showMessageDialog(null, "The disc titled " + disc.getTitle() + " has been added");
+			System.out.println("The disc titled " + disc.getTitle() + " has been added");
 		}else {
-			JOptionPane.showMessageDialog(null, "The cart is almost full");
+			System.out.println("The cart is almost full");
 		}
 	}
 	
@@ -47,17 +48,17 @@ public class Cart {
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		int pos = searchDisc(disc);
 		if(QtyOrdered == 0) {
-			JOptionPane.showMessageDialog(null, "There are no more disk to remove");
+			System.out.println("There are no more disk to remove");
 		}else {
 			if(pos == -1) {
-				JOptionPane.showMessageDialog(null, "There are no disks titled " + disc.getTitle() + " in the cart to remove");
+				System.out.println("There are no disks titled " + disc.getTitle() + " in the cart to remove");
 			}else {
 				if(QtyOrdered > 0) {
 					for(int i = pos; i < QtyOrdered-1; i++) {
 						itemOrdered[i] = itemOrdered[i+1];
 					}
 					QtyOrdered--;
-					JOptionPane.showMessageDialog(null, "The disc titled " + disc.getTitle()+ " has been removed");
+					System.out.println("The disc titled " + disc.getTitle()+ " has been removed");
 				}
 			}
 		}
@@ -70,5 +71,62 @@ public class Cart {
 			sum += itemOrdered[i].getCost();
 		}
 		return sum;
+	}
+	// 
+	public void ShowDetail() {
+		for(int i = 0; i < QtyOrdered; i++) {
+			System.out.println(itemOrdered[i].getDetail());
+		}
+	}
+	
+	//Sort the DVDs in the cart by cost and print the result
+	public void SortbyCostandPrint() {
+		System.out.println("Show details of all sorted DVDs by cost in the cart");
+		itemOrdered = DVDUtils.sortByCost(itemOrdered);
+		System.out.println("ID   Title   Category   Director   Length   Cost   Date_added");
+		for(int i = 0; i < QtyOrdered; i++) {
+			System.out.println(itemOrdered[i].getDetail());
+		}
+	}
+	
+	public void SortbyTitleandPrint() {
+		System.out.println("Show details of all sorted DVDs by title in the cart");
+		itemOrdered = DVDUtils.sortByTitle(itemOrdered);
+		System.out.println("ID   Title   Category   Director   Length   Cost   Date_added");
+		for(int i = 0; i < QtyOrdered; i++) {
+			System.out.println(itemOrdered[i].getDetail());
+		}
+	}
+	
+	public void SearchID(String id) {
+		int count = 0;
+		for(int i = 0; i < QtyOrdered; i++) {
+			if(itemOrdered[i].getId().compareToIgnoreCase(id) == 0) {
+				System.out.println(itemOrdered[i].getDetail());
+			}else count++;
+		}
+		if (count == QtyOrdered) System.out.println("No match is found.");
+	}
+	public void Printlist() {
+		Comparator<DigitalVideoDisc> DVDcheck = new Comparator<DigitalVideoDisc>() {
+			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+				int compareByTitle = DVDUtils.compareByTitle(disc1, disc2);
+				if(compareByTitle == 0) {
+					int compareByCost = DVDUtils.compareByCost(disc1, disc2);
+					if(compareByCost == 0) {
+						return disc2.getLength() - disc1.getLength();
+					}
+					return -compareByCost;
+				}
+				return compareByTitle;
+			}
+		};
+		Arrays.sort(itemOrdered,DVDcheck);
+		System.out.println("=============CART=============");
+		System.out.println("Ordered items:");
+		for(int i = 0; i < QtyOrdered; i++) {
+			itemOrdered[i].getDetail();
+		}
+		System.out.println("Total Cost: " + this.totalCost());
 	}
 }
