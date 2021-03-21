@@ -109,6 +109,7 @@ public class Cart {
 	}
 	public void Printlist() {
 		Comparator<DigitalVideoDisc> DVDcheck = new Comparator<DigitalVideoDisc>() {
+			@Override
 			public int compare(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
 				int compareByTitle = DVDUtils.compareByTitle(disc1, disc2);
 				if(compareByTitle == 0) {
@@ -121,11 +122,17 @@ public class Cart {
 				return compareByTitle;
 			}
 		};
-		Arrays.sort(itemOrdered,DVDcheck);
+		int number = 0;
+    	for (number = 0; itemOrdered[number] != null; number++);
+    	DigitalVideoDisc[] itemOrdered_new = new DigitalVideoDisc [number];
+    	for(int i =0; i<number;i++) {
+    		itemOrdered_new[i] = itemOrdered[i];
+    	}
+		Arrays.sort(itemOrdered_new,DVDcheck);
 		System.out.println("=============CART=============");
 		System.out.println("Ordered items:");
 		for(int i = 0; i < QtyOrdered; i++) {
-			itemOrdered[i].getDetail();
+			System.out.println(itemOrdered_new[i].getTitle() + " - " + itemOrdered_new[i].getCategory() + " - " + itemOrdered_new[i].getDirector() + " - " + itemOrdered_new[i].getLength() + " : " + itemOrdered_new[i].getCost() + "$");
 		}
 		System.out.println("Total Cost: " + this.totalCost());
 	}

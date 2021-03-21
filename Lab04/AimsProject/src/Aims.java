@@ -13,11 +13,12 @@ public class Aims {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
 				"Animation", 18.99f);
 		// constructor without cost. So cost will be 0 
-	    DigitalVideoDisc dvd4 = new DigitalVideoDisc("Ironman");
+	    DigitalVideoDisc dvd4 = new DigitalVideoDisc("the lion king","Animation", 18f);
 		// check totalCost and removeDVD
 		anOrder.addDigitalVideoDisc(dvd1);
 		anOrder.addDigitalVideoDisc(dvd2);
 		anOrder.addDigitalVideoDisc(dvd3);
+		anOrder.addDigitalVideoDisc(dvd4);
 		// check addDVD full. Set MAX_NUMBERS_ORDERED = 3 in Cart class
 		System.out.println("Total Cost is: " + anOrder.totalCost());
 		System.out.println();
