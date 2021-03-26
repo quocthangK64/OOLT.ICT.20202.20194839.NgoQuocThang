@@ -1,3 +1,6 @@
+package hust.soict.globalict.test.disc;
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+
 class DVDWrapper{ 
 	   DigitalVideoDisc disc; 
 	   DVDWrapper(DigitalVideoDisc disc){

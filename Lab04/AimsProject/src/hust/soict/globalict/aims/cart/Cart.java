@@ -1,4 +1,9 @@
+package hust.soict.globalict.aims.cart;
 import java.util.Comparator;
+
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.utils.DVDUtils;
+
 import java.util.Arrays;
 public class Cart {
 	
@@ -135,5 +140,6 @@ public class Cart {
 			System.out.println(itemOrdered_new[i].getTitle() + " - " + itemOrdered_new[i].getCategory() + " - " + itemOrdered_new[i].getDirector() + " - " + itemOrdered_new[i].getLength() + " : " + itemOrdered_new[i].getCost() + "$");
 		}
 		System.out.println("Total Cost: " + this.totalCost());
+		// 
 	}
 }
