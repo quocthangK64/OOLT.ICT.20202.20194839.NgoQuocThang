@@ -1,22 +1,27 @@
 package hust.soict.globalict.garbage;
 import java.util.Random;
-
 public class ConcatenationInLoops {
 	public static void main(String[] args) {
-		String s = "" ;
-		Random r = new Random(123) ;
+		//not using StringBuffer
+		String str = "" ;
+		Random random = new Random(123) ;
 		long startTime = System.currentTimeMillis() ;
-		for(int i = 0 ;i < 65536 ;i++) {
-			s += r.nextInt();
+		for(int i = 0 ;i < 10000 ;i++) {
+			str += random.nextInt();
 		}
-		System.out.println(System.currentTimeMillis() - startTime);
+		long endTime = System.currentTimeMillis();
+		System.out.println(endTime - startTime);
+//		System.out.println(str);
 		
-		StringBuffer ouputString = new StringBuffer("") ;
-		r = new Random(123) ;
+		// using StringBuffer
+		StringBuffer outputString = new StringBuffer("") ;
+		random = new Random(100) ;
 		startTime = System.currentTimeMillis() ;
-		for(int i = 0 ;i < 65536; i++) {
-			ouputString.append(r.nextInt()) ;
+		for(int i = 0 ;i < 10000; i++) {
+			outputString.append(random.nextInt()) ;
 		}
-		System.out.println(System.currentTimeMillis() - startTime);
+		endTime = System.currentTimeMillis();
+		System.out.println(endTime - startTime);
+//		System.out.println(outputString);
 	}
 }
