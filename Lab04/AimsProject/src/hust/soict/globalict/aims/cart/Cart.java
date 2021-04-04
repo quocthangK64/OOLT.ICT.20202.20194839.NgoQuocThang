@@ -1,9 +1,8 @@
 package hust.soict.globalict.aims.cart;
 import java.util.Comparator;
-
+import hust.soict.globalict.aims.store.Store;
 import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 import hust.soict.globalict.aims.utils.DVDUtils;
-
 import java.util.Arrays;
 public class Cart {
 	
@@ -28,12 +27,16 @@ public class Cart {
 	
 	// addDigitalVideoDisc method
 	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
+		if(disc == null) {
+			System.out.println("ID is invalid. There is no dvd like that in store.");
+		}else {
 		if(QtyOrdered < MAX_NUMBERS_ORDERED) {
 			itemOrdered[QtyOrdered] = disc;
 			QtyOrdered++;
-			System.out.println("The disc titled " + disc.getTitle() + " has been added");
+			System.out.println("The disc titled " + disc.getTitle() + " has been added to the cart.");
 		}else {
-			System.out.println("The cart is almost full");
+			System.out.println("The cart is almost full.");
+		}
 		}
 	}
 	
@@ -51,21 +54,25 @@ public class Cart {
 	
 	// removeDigitalVideoDisc method
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
+		if(disc == null) {
+			System.out.println("ID is invalid. There is no dvd like that in store.");
+		}else {
 		int pos = searchDisc(disc);
 		if(QtyOrdered == 0) {
-			System.out.println("There are no more disk to remove");
+			System.out.println("There are no more disk to remove.");
 		}else {
 			if(pos == -1) {
-				System.out.println("There are no disks titled " + disc.getTitle() + " in the cart to remove");
+				System.out.println("There are no disks titled " + disc.getTitle() + " in the cart to remove.");
 			}else {
 				if(QtyOrdered > 0) {
 					for(int i = pos; i < QtyOrdered-1; i++) {
 						itemOrdered[i] = itemOrdered[i+1];
 					}
 					QtyOrdered--;
-					System.out.println("The disc titled " + disc.getTitle()+ " has been removed");
+					System.out.println("The disc titled " + disc.getTitle()+ " has been removed from the cart.");
 				}
 			}
+		}
 		}
 	}
 	
@@ -129,17 +136,55 @@ public class Cart {
 		};
 		int number = 0;
     	for (number = 0; itemOrdered[number] != null; number++);
-    	DigitalVideoDisc[] itemOrdered_new = new DigitalVideoDisc [number];
-    	for(int i =0; i<number;i++) {
-    		itemOrdered_new[i] = itemOrdered[i];
-    	}
-		Arrays.sort(itemOrdered_new,DVDcheck);
-		System.out.println("=============CART=============");
+		Arrays.sort(itemOrdered,0,number,DVDcheck);
+		System.out.println("===============================CART===============================");
 		System.out.println("Ordered items:");
+		if(number==0) System.out.println("Empty."); 
+		else {
 		for(int i = 0; i < QtyOrdered; i++) {
-			System.out.println(itemOrdered_new[i].getTitle() + " - " + itemOrdered_new[i].getCategory() + " - " + itemOrdered_new[i].getDirector() + " - " + itemOrdered_new[i].getLength() + " : " + itemOrdered_new[i].getCost() + "$");
+			System.out.println(itemOrdered[i].getId()+ " - " + itemOrdered[i].getTitle() 
+					+ " - " + itemOrdered[i].getCategory() + " - " + itemOrdered[i].getDirector() 
+					+ " - " + itemOrdered[i].getLength() + " : " + itemOrdered[i].getCost() + "$");
 		}
 		System.out.println("Total Cost: " + this.totalCost());
-		// 
+		}
+	}
+	
+	// ------------Lab05----------- //
+	public void SearchTitle(String title) {
+			int count = 0;
+			for(int i = 0; i < QtyOrdered; i++) {
+				if(itemOrdered[i].search(title)) {
+					System.out.println(itemOrdered[i].getDetail());
+				}else count++;
+			}
+			if (count == QtyOrdered) System.out.println("No match is found.");
+	}
+	public void removeDigitalVideoDisc(String id) {
+		int count = 0;
+		int number = 0;
+    	for (number = 0; itemOrdered[number] != null; number++);
+    	if(number == 0) {
+    		System.out.println("There is nothing to remove.");
+    	}else {
+		for(int i = 0; i < QtyOrdered; i++) {
+			if(itemOrdered[i].getId().equals(id)) {
+				this.removeDigitalVideoDisc(itemOrdered[i]);
+			}else count++;
+		}
+		if(count == QtyOrdered) {
+			System.out.println("ID is invalid. That DVD may not be in the cart.");
+		}
+    	}
+	}
+	public void addDigitalVideoDisc(String id) {
+		int count = 0;
+		if(count == QtyOrdered) {
+			System.out.println("ID is invalid. That DVD may not be in the cart.");
+		}
+	}
+	public void emptyCart(){
+	    Arrays.fill(itemOrdered, null);
+	    System.out.println("Place order successfully. An order is created.");
 	}
 }

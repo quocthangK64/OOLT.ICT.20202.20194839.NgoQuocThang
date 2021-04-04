@@ -1,5 +1,6 @@
 package hust.soict.globalict.aims.disc;
-import java.time.LocalDate; 
+import java.time.LocalDate;
+import java.util.StringTokenizer;
 public class DigitalVideoDisc {
     private String title;
     private String category;
@@ -89,4 +90,20 @@ public class DigitalVideoDisc {
           + "       " + this.getLength() + "        " 
           + this.getCost() + "    " + this.getDateAdded();
     }
+    
+    // -----------Lab05------------ //
+    public boolean search(String title) {
+    	StringTokenizer str = new StringTokenizer(title);
+    	String [] s = this.getTitle().split(" ");
+    	while(str.hasMoreTokens()) {
+    		String save = str.nextToken();
+    		for(int i = 0;i < s.length;i++) {
+    			if(s[i].compareToIgnoreCase(save)==0) {
+    				return true;
+    			}
+    		}
+    	}
+    	return false;
+    }
+    
 }

@@ -1,8 +1,12 @@
-public class Aims {
+package hust.soict.globalict.aims;
 
+import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+
+public class DiskTest {
 	public static void main(String[] args) {
 		
-		Cart anOrder = new Cart();
+        Cart anOrder = new Cart();
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
 				"Animation","Roger Allers", 87, 19.95f);
@@ -19,13 +23,10 @@ public class Aims {
 		anOrder.addDigitalVideoDisc(dvd2);
 		anOrder.addDigitalVideoDisc(dvd3);
 		anOrder.addDigitalVideoDisc(dvd4);
-		// check addDVD full. Set MAX_NUMBERS_ORDERED = 3 in Cart class
-		System.out.println("Total Cost is: " + anOrder.totalCost());
-		System.out.println();
-		System.out.println("Local Date of dvd3 in the store is: " + dvd3.getDateAdded());
-//		System.out.println("ID of dvd4 in the store is: " + dvd4.getId());
-		System.out.println("# of dvds in the store is: " + DigitalVideoDisc.getNbDigitalVideoDiscs());
-		System.out.println();
-		anOrder.Printlist();
+		if(dvd1.search("thang dhdk thes 1234 kin sdaasfasf")) {
+			System.out.println("True");
+		}else System.out.println("False");
+		
+		anOrder.SearchTitle("1234 ngay cos nhung noi nho th");
 	}
 }
