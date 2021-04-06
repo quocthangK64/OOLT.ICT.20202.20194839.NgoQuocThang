@@ -1,0 +1,29 @@
+package Problem6_1;
+import java.util.Scanner;
+public class Pro2_2_5 {
+	
+	public void Task1() {
+		System.out.println("Linear Equation with One Variable ( ax + b = 0 )");
+		double a,b;
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the value of a: ");
+		a = sc.nextDouble();
+		System.out.print("Enter the value of b: ");
+		b = sc.nextDouble();
+	    if (a!=0) {
+	    	
+	    	 System.out.println("The solution of function " + a + "x + " + b + " = 0"+" is " + (b/a) );
+	    	 
+	    }else {
+	    	
+	    	 if(b!=0)
+	    		 
+	    	 System.out.println("There is no solution for the function: "+ (int)b + " = 0 ");
+	    	 
+	    	 else System.out.println("There are many solutions for the function: "+ (int)b + " = 0 ");
+	     
+	     }
+	}
+
+
+}

@@ -1,0 +1,20 @@
+package Problem6_1;
+import javax.swing.JOptionPane;
+public class Pro2_2_5 {
+
+	public static void main(String[] args) {
+	     JOptionPane.showMessageDialog(null,"Linear Equation with One Variable ( ax + b = 0 )");
+	     String stra = JOptionPane.showInputDialog("Enter the value of a: ");
+	     String strb = JOptionPane.showInputDialog("Enter the value of b: ");
+	     double a = Double.parseDouble(stra);
+	     double b = Double.parseDouble(strb);
+	     
+	     if (a!=0) {
+	    	 JOptionPane.showMessageDialog(null,"The solution of function " + a + "x + " + b + " = 0"+" is " + (b/a) );
+	     }else {
+	    	 JOptionPane.showMessageDialog(null,"There is no solution for the function: "+ b + " = 0 ");
+	     }
+	}
+
+
+}
