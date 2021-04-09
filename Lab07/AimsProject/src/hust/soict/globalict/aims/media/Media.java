@@ -31,7 +31,13 @@ public abstract class Media {
 		this.cost = cost;
 		this.dateAdded = LocalDate.now();
 	}
-
+	public Media(String title) {
+		super();
+		nbMedia++;
+		this.id = nbMedia;
+		this.title = title;
+		this.dateAdded = LocalDate.now();
+	}
 	public int getId() {
 		return id;
 	}

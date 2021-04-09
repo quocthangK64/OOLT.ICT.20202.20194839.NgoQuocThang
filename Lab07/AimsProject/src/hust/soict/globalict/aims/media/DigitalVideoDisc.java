@@ -1,17 +1,11 @@
 package hust.soict.globalict.aims.media;
-import java.time.LocalDate;
-public class DigitalVideoDisc extends Media{
-    private String director;
-    private int length;
+
+public class DigitalVideoDisc extends Disc{
     //Question in part 5. Create Constructor method
     //Answer: Yes. JAVA allow us to do this. It's called overloading method
     // 2 constructor are different from variables (title and category)
 	public DigitalVideoDisc(String title) {
-		super();
-		this.title = title;
-		this.dateAdded = LocalDate.now();
-		nbMedia++;
-		this.id += nbMedia;
+		super(title);
 	}
 	
 	public DigitalVideoDisc(String title, String category, float cost) {
@@ -27,16 +21,6 @@ public class DigitalVideoDisc extends Media{
 		super(title,category,cost);
 		this.director = director;
 		this.length = length;
-	}
-
-	public String getDirector() {
-		return director;
-	}
-	public int getLength() {
-		return length;
-	}
-	public static int getNbDigitalVideoDiscs() {
-		return nbMedia;
 	}
 	public void setTitle(String title) {
 		this.title = title;

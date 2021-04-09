@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Book extends Media{
 	
 	private List<String> authors = new ArrayList<String>();
 	private List<String> token = new ArrayList<String>();
-	private int contentLength = token.size();
+//	private int contentLength = token.size();
 	private int[] frequency = new int[1000];
 	private String content;
 	public Book() {
