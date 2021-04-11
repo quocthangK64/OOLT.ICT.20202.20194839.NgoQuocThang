@@ -22,7 +22,11 @@ public class Track implements Playable{
 	}
 	@Override
 	public void play() {
-		System.out.println("Playing track: " + this.getTitle());
-		System.out.println("Track length: " + this.getLength());
+		if(this.getLength() > 0) {
+			System.out.println("Playing track: " + this.getTitle());
+			System.out.println("Track length: " + this.getLength());
+			}else {
+				System.out.println("Cannot play this track: "+ this.getTitle() + " because this has the length 0 or less");
+			}
 	}
 }

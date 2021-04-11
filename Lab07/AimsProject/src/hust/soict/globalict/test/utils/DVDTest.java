@@ -26,13 +26,13 @@ public class DVDTest {
 		System.out.println("sort by cost: ");
 		System.out.println("ID   Title   Category   Director   Length   Cost   Date_added");
 		for(int i = 0; i < sorted.size(); i++) {
-			System.out.println(sorted.get(i).getDetail());
+			sorted.get(i).getDetail();
 		}
 		sorted = MediaUtils.sortByTitle(sorted);
 		System.out.println("sort bt title: ");
 		System.out.println("ID   Title   Category   Director   Length   Cost   Date_added");
 		for(int i = 0; i < sorted.size(); i++) {
-			System.out.println(sorted.get(i).getDetail());
+			sorted.get(i).getDetail();
 		}
 	}
 }

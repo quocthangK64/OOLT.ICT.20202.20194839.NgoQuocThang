@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.media;
 
-public class Disc extends Media{
+public class Disc extends Media {
 	protected int length;
 	protected String director;
 	public Disc() {
@@ -17,5 +17,11 @@ public class Disc extends Media{
 	}
 	public String getDirector() {
 		return director;
+	}
+	public void getDetail() {
+	    System.out.println(this.getId() + " " + this.getTitle() + "    " 
+	    		+ this.getCategory() + "       " + this.getDirector() 
+	    		+ "       " + this.getLength() + "        " 
+	    		+ this.getCost() + "    " + this.getDateAdded());
 	}
 }

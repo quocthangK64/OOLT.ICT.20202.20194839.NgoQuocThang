@@ -1,5 +1,8 @@
 package hust.soict.globalict.aims.store;
 import java.util.ArrayList;
+
+import hust.soict.globalict.aims.media.CompactDisc;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 public class Store {
 	public ArrayList<Media> itemsInStore = new ArrayList<Media>();
@@ -37,13 +40,13 @@ public class Store {
 		int count = 0;
 		for(Media item : itemsInStore) {
 			if(item.getId()==id) {
-				System.out.println(item.getDetail());
+				item.getDetail();
 				count--;
 				break;
 			}else count++;
 		}
 		if(count == itemsInStore.size()) {
-			System.out.println("ID is invalid. That media may not be in the cart.");
+			System.out.println("ID is invalid. That media may not be in the store.");
 		}
 	}
 	
@@ -54,5 +57,31 @@ public class Store {
 			}
 		}
 		return null;
+	}
+	
+	public void play(int id) {
+		int count = 0;
+		for(Media item : itemsInStore) {
+			if(item.getId()==id) {
+				if(item.getClass().getSimpleName().equals("Book")) {
+					System.out.println("You had already chosen a book which cannot be played.");
+				}else {
+					if(item.getClass().getSimpleName().equals("DigitalVideoDisc")) {
+						DigitalVideoDisc dvd = (DigitalVideoDisc) item;
+						dvd.play();
+					}else {
+						if(item.getClass().getSimpleName().equals("CompactDisc")) {
+							CompactDisc  cd = (CompactDisc) item;
+							cd.play();
+						}
+					}
+				}
+				count--;
+				break;
+			}else count++;
+		}
+		if(count == itemsInStore.size()) {
+			System.out.println("ID is invalid. That media may not be in the store.");
+		}
 	}
 }

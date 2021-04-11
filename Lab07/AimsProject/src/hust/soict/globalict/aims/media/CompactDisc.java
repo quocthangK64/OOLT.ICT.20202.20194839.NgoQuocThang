@@ -12,10 +12,15 @@ public class CompactDisc extends Disc implements Playable{
 	public CompactDisc(String title, String category, float cost) {
 		super(title,category,cost);
 	}
+	
 	public CompactDisc(String title) {
 		super(title);
 	}
 	
+	public CompactDisc(String title, String category, String director, float cost) {
+		super(title,category,cost);
+		this.director = director;
+	}
 	public String getArtist() {
 		return artist;
 	}
@@ -42,10 +47,21 @@ public class CompactDisc extends Disc implements Playable{
 	}
 	@Override
 	public void play() {
-		System.out.println("Playing CD: " + this.getTitle());
-		System.out.println("CD length: " + this.getLength());
+		if(this.getLength() > 0) {
+			System.out.println("Playing CD: " + this.getTitle());
+			System.out.println("CD length: " + this.getLength());
+			for(int i = 0; i < tracks.size(); i++) {
+				tracks.get(i).play();
+			}
+		}else {
+			System.out.println("Cannot play this CD: "+ this.getTitle() + " because this has the length 0 or less");
+		}
+	}
+	public void getDetail() {
+		super.getDetail();
 		for(int i = 0; i < tracks.size(); i++) {
-			tracks.get(i).play();
+			System.out.println("		Track: " + tracks.get(i).getTitle());
+			System.out.println("		Length: " + tracks.get(i).getLength());
 		}
 	}
 }

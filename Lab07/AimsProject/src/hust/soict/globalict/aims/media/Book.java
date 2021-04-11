@@ -55,11 +55,11 @@ public class Book extends Media{
 			System.out.println("Author has not been in the list.");
 		}
 	}
-	public String getDetail() {
-    	return this.getId() + " " + this.getTitle() + "    " 
+	public void getDetail() {
+    	System.out.println( this.getId() + " " + this.getTitle() + "    " 
           + this.getCategory() + "       " + this.getContentLength() + 
           "        " + this.getCost() + "        " + this.getAuthors()
-          +"    " + this.getDateAdded() + "    " + this.getToken()+"     " +this.getFrequency();
+          +"    " + this.getDateAdded() + "    " + this.getToken()+"     " +this.getFrequency());
     }
 	public int takeContentLength(String content) {
 		int result;

@@ -3,8 +3,10 @@ import java.util.Scanner;
 
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Book;
+import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.media.Track;
 import hust.soict.globalict.aims.store.Store;
 
 public class Aims {
@@ -23,10 +25,11 @@ public class Aims {
     		System.out.println("--------------------------------"); 
     		System.out.println("1. See a Media’s details"); 
     		System.out.println("2. Add a Media to cart"); 
-    		System.out.println("3. See current cart"); 
+    		System.out.println("3. See current cart");
+    		System.out.println("4. Play a Media");
     		System.out.println("0. Exit"); 
     		System.out.println("--------------------------------"); 
-    		System.out.println("Please choose a number: 0-1-2-3");
+    		System.out.println("Please choose a number: 0-1-2-3-4");
     }
     public static void cartMenu() { 
     		System.out.println("Options: ");
@@ -35,8 +38,9 @@ public class Aims {
     		System.out.println("2. Sort Medias in cart"); 
     		System.out.println("3. Remove Media from cart"); 
     		System.out.println("4. Get a lucky item from cart");
-    		System.out.println("5. Place order"); 
-    		System.out.println("0. Exit"); 
+    		System.out.println("5. Play a Media in cart");
+    		System.out.println("6. Place order"); 
+    		System.out.println("0. Exit");
     		System.out.println("--------------------------------");
     		System.out.println("Please choose a number: 0-1-2-3-4-5");
     }
@@ -56,6 +60,14 @@ public class Aims {
 	    		"Animation", 19.95f);
 	    Book b1 = new Book("Harry Potter", "Magic", 2.05f, "I can can the can, but the can cannot can me");
 	    Book b2 = new Book("Lich Su Dang", "History", 2.00f, new String[] {"Hoang Thi Lan", "Luong Thi Phuong Thao"}, "I can can the can, but the can cannot can me");
+	    // Lab07 create a CD and add to store
+	    CompactDisc cd1 = new CompactDisc("Bandcamp","Jacam Manricks Music",2.05f);
+	    Track t1 =  new Track("HOW SHALLOW", 5);
+	    Track t2 = new Track("SlIPPERY", 4);
+	    Track t3 = new Track("INTERCEPT", 6);
+	    cd1.addTrack(t1);
+	    cd1.addTrack(t2);
+	    cd1.addTrack(t3);
 		anOrder.addMedia(dvd1);
 		anOrder.addMedia(dvd4);
 		anOrder.addMedia(dvd2);
@@ -78,6 +90,7 @@ public class Aims {
 	    store.addMedia(dvd5);
 	    store.addMedia(b1);
 	    store.addMedia(b2);
+	    store.addMedia(cd1);
 	    do {
 	    	Aims.showMenu();
 	    	Scanner sc = new Scanner(System.in);
@@ -107,6 +120,11 @@ public class Aims {
 	    	        		break;
 	    	        	case 3:
 	    	        		anOrder.Printlist();
+	    	        		break;
+	    	        	case 4:
+	    	        		System.out.println("Enter ID of Media that you want to play:");
+	    	        		id = sc.nextInt();
+	    	        		store.play(id);
 	    	        		break;
 	    	        	case 0:
 	    	        		break;
@@ -212,6 +230,11 @@ public class Aims {
 	    					lucky_item.setFree();
 	    					break;
 	    				case 5:
+	    					System.out.println("Enter ID of Media that you want to play in the cart:");
+	    	        		id = sc.nextInt();
+	    	        		anOrder.play(id);
+	    					break;
+	    				case 6:
 	    					anOrder.emptyCart();
 	    					break;
 	    				case 0:

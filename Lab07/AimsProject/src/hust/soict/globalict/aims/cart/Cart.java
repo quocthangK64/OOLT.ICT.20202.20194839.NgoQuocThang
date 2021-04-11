@@ -2,6 +2,9 @@ package hust.soict.globalict.aims.cart;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import hust.soict.globalict.aims.media.CompactDisc;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.utils.MediaUtils;
 public class Cart {
@@ -37,7 +40,7 @@ public class Cart {
 	// 
 	public void ShowDetail() {
 		for(int i = 0; i < itemsOrdered.size(); i++) {
-			System.out.println(itemsOrdered.get(i).getDetail());
+			itemsOrdered.get(i).getDetail();
 		}
 	}
 	
@@ -46,7 +49,7 @@ public class Cart {
 		System.out.println("Show details of all sorted medias by cost in the cart");
 		itemsOrdered = MediaUtils.sortByCost(itemsOrdered);
 		for(int i = 0; i < itemsOrdered.size(); i++) {
-			System.out.println(itemsOrdered.get(i).getDetail());
+			itemsOrdered.get(i).getDetail();
 		}
 	}
 	
@@ -54,7 +57,7 @@ public class Cart {
 		System.out.println("Show details of all sorted medias by title in the cart");
 		itemsOrdered = MediaUtils.sortByTitle(itemsOrdered);
 		for(int i = 0; i < itemsOrdered.size(); i++) {
-			System.out.println(itemsOrdered.get(i).getDetail());
+			itemsOrdered.get(i).getDetail();
 		}
 	}
 	
@@ -62,7 +65,7 @@ public class Cart {
 		int count = 0;
 		for(int i = 0; i < itemsOrdered.size(); i++) {
 			if(itemsOrdered.get(i).getId() == id) {
-				System.out.println(itemsOrdered.get(i).getDetail());
+				itemsOrdered.get(i).getDetail();
 			}else count++;
 		}
 		if (count == itemsOrdered.size()) System.out.println("No match is found.");
@@ -89,7 +92,7 @@ public class Cart {
 		if(itemsOrdered.size()==0) System.out.println("Empty."); 
 		else {
 		for(int i = 0; i < itemsOrdered.size(); i++) {
-			System.out.println(itemsOrdered.get(i).getDetail());
+			itemsOrdered.get(i).getDetail();
 		}
 		System.out.println("Total Cost: " + this.totalCost());
 		}
@@ -100,7 +103,7 @@ public class Cart {
 			int count = 0;
 			for(int i = 0; i < itemsOrdered.size() ; i++) {
 				if(itemsOrdered.get(i).search(title)) {
-					System.out.println(itemsOrdered.get(i).getDetail());
+					itemsOrdered.get(i).getDetail();
 				}else count++;
 			}
 			if (count == itemsOrdered.size()) System.out.println("No match is found.");
@@ -145,6 +148,32 @@ public class Cart {
 				return itemsOrdered.get(i);
 			}
 			}
+		}
+	}
+	// -----------Lab07--------------
+	public void play(int id) {
+		int count = 0;
+		for(Media item : itemsOrdered) {
+			if(item.getId()==id) {
+				if(item.getClass().getSimpleName().equals("Book")) {
+					System.out.println("You had already chosen a book which cannot be played.");
+				}else {
+					if(item.getClass().getSimpleName().equals("DigitalVideoDisc")) {
+						DigitalVideoDisc dvd = (DigitalVideoDisc) item;
+						dvd.play();
+					}else {
+						if(item.getClass().getSimpleName().equals("CompactDisc")) {
+							CompactDisc  cd = (CompactDisc) item;
+							cd.play();
+						}
+					}
+				}
+				count--;
+				break;
+			}else count++;
+		}
+		if(count == itemsOrdered.size()) {
+			System.out.println("ID is invalid. That media may not be in the cart.");
 		}
 	}
 }

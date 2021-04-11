@@ -56,10 +56,10 @@ public abstract class Media {
 	public LocalDate getDateAdded() {
 		return dateAdded;
 	}
-	public String getDetail() {
-    	return this.getId() + " " + this.getTitle() + "    " 
+	public void getDetail() {
+    	System.out.println(this.getId() + " " + this.getTitle() + "    " 
           + this.getCategory() + "       "
-          + this.getCost() + "    " + this.getDateAdded();
+          + this.getCost() + "    " + this.getDateAdded());
     }
 	public void setFree() {
 		this.cost = 0f;
