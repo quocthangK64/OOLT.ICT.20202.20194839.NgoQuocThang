@@ -33,7 +33,7 @@ public class Track implements Playable{
 	public boolean equals(Object obj) {
 		if (obj instanceof Track) {
 			Track t = (Track) obj;
-			return (this.title == t.title && this.length == t.length);
+			return (this.title.equals(t.title) && this.length == t.length);
 		}else {
 			return false;
 		}
