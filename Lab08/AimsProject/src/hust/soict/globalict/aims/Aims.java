@@ -15,7 +15,7 @@ public class Aims {
     		System.out.println("--------------------------------"); 
     		System.out.println("1. View store"); 
     		System.out.println("2. Update store"); 
-    		System.out.println("3. See current cart"); 
+    		System.out.println("3. View cart"); 
     		System.out.println("0. Exit"); 
     		System.out.println("--------------------------------"); 
     		System.out.println("Please choose a number: 0-1-2-3");
@@ -27,7 +27,7 @@ public class Aims {
     		System.out.println("2. Add a Media to cart"); 
     		System.out.println("3. See current cart");
     		System.out.println("4. Play a Media");
-    		System.out.println("0. Exit"); 
+    		System.out.println("0. Exit");
     		System.out.println("--------------------------------"); 
     		System.out.println("Please choose a number: 0-1-2-3-4");
     }
@@ -53,11 +53,11 @@ public class Aims {
 		t.start();
 		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
-				"Animation","Roger Allers", 87, 19.95f);
+				"Bnimation","Roger Allers", 87, 19.95f);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Stars Wars",
 		    	"Science Fiction","George Lucas", 87, 24.95f);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
-				"Animation", 18.99f);
+				"Bnimation", 18.99f);
 	    DigitalVideoDisc dvd4 = new DigitalVideoDisc("the lion king",
 	    		"Animation", 18f);
 	    DigitalVideoDisc dvd5 = new DigitalVideoDisc("Aladin",

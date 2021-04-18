@@ -1,7 +1,6 @@
 package hust.soict.globalict.aims.cart;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
@@ -72,21 +71,21 @@ public class Cart {
 	}
 	
 	public void Printlist() {
-		Comparator<Media> DVDcheck = new Comparator<Media>() {
-			@Override
-			public int compare(Media disc1, Media disc2) {
-				int compareByTitle = MediaUtils.compareByTitle(disc1, disc2);
-				if(compareByTitle == 0) {
-					int compareByCost = MediaUtils.compareByCost(disc1, disc2);
-					if(compareByCost == 0) {
-//						return disc2.getLength() - disc1.getLength();
-					}
-					return -compareByCost;
-				}
-				return compareByTitle;
-			}
-		};
-		Collections.sort(itemsOrdered,DVDcheck);
+//		Comparator<Media> DVDcheck = new Comparator<Media>() {
+//			@Override
+//			public int compare(Media disc1, Media disc2) {
+//				int compareByTitle = MediaUtils.compareByTitle(disc1, disc2);
+//				if(compareByTitle == 0) {
+//					int compareByCost = MediaUtils.compareByCost(disc1, disc2);
+//					if(compareByCost == 0) {
+////						return disc2.getLength() - disc1.getLength();
+//					}
+//					return -compareByCost;
+//				}
+//				return compareByTitle;
+//			}
+//		};
+		Collections.sort((java.util.List<Media>)itemsOrdered);
 		System.out.println("===============================CART===============================");
 		System.out.println("Ordered items:");
 		if(itemsOrdered.size()==0) System.out.println("Empty."); 

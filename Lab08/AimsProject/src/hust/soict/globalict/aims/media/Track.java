@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.media;
 
-public class Track implements Playable{
+public class Track implements Playable, Comparable<Track> {
 	private String title;
 	private int length;
 	public Track(String title) {
@@ -37,5 +37,10 @@ public class Track implements Playable{
 		}else {
 			return false;
 		}
+	}
+	@Override
+	public int compareTo(Track o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public abstract class Media {
+public abstract class Media implements Comparable<Media>{
 	protected int id;
 	protected String title;
 	protected String category;
@@ -84,6 +84,14 @@ public abstract class Media {
     		return this.id == m.id;
     	}else {
     		return false;
+    	}
+    }
+    @Override
+    public int compareTo(Media o) {
+    	if(this.title.compareToIgnoreCase(o.getTitle())!=0) {
+    		return this.title.compareToIgnoreCase(o.getTitle());
+    	}else {
+    		return this.category.compareToIgnoreCase(o.getCategory());
     	}
     }
 }

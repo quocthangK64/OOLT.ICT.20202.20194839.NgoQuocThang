@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Book extends Media{
+public class Book extends Media {
 	
 	private List<String> authors = new ArrayList<String>();
 	private List<String> token = new ArrayList<String>();
@@ -96,5 +96,4 @@ public class Book extends Media{
         list = Arrays.asList(strArray);
 		return list;
 	}
-	
 }

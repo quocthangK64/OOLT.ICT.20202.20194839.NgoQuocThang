@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.media;
 
-public class DigitalVideoDisc extends Disc implements Playable{
+public class DigitalVideoDisc extends Disc implements Playable {
     //Question in part 5. Create Constructor method
     //Answer: Yes. JAVA allow us to do this. It's called overloading method
     // 2 constructor are different from variables (title and category)
