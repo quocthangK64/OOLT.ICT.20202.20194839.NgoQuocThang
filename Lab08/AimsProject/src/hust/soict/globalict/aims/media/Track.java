@@ -33,14 +33,13 @@ public class Track implements Playable, Comparable<Track> {
 	public boolean equals(Object obj) {
 		if (obj instanceof Track) {
 			Track t = (Track) obj;
-			return (this.title.equals(t.title) && this.length == t.length);
+			return (this.title.equals(t.getTitle()) && this.length == t.getLength());
 		}else {
 			return false;
 		}
 	}
 	@Override
 	public int compareTo(Track o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.title.compareToIgnoreCase(o.getTitle());
 	}
 }

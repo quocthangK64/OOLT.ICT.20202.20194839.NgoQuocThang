@@ -5,7 +5,6 @@ import java.util.Collections;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
-import hust.soict.globalict.aims.utils.MediaUtils;
 public class Cart {
 	
 	public static final int MAX_NUMBERS_ORDERED = 20;
@@ -46,7 +45,8 @@ public class Cart {
 	//Sort the DVDs in the cart by cost and print the result
 	public void SortbyCostandPrint() {
 		System.out.println("Show details of all sorted medias by cost in the cart");
-		itemsOrdered = MediaUtils.sortByCost(itemsOrdered);
+		//itemsOrdered = MediaUtils.sortByCost(itemsOrdered);
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
 		for(int i = 0; i < itemsOrdered.size(); i++) {
 			itemsOrdered.get(i).getDetail();
 		}
@@ -54,7 +54,8 @@ public class Cart {
 	
 	public void SortbyTitleandPrint() {
 		System.out.println("Show details of all sorted medias by title in the cart");
-		itemsOrdered = MediaUtils.sortByTitle(itemsOrdered);
+		//itemsOrdered = MediaUtils.sortByTitle(itemsOrdered);
+		Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
 		for(int i = 0; i < itemsOrdered.size(); i++) {
 			itemsOrdered.get(i).getDetail();
 		}
