@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
-import hust.soict.globalict.aims.utils.MediaUtils;
 
 
 public class DVDTest {
