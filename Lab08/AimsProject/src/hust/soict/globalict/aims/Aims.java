@@ -22,18 +22,18 @@ public class Aims {
     }
     public static void storeMenu() { 
     		System.out.println("Options: ");
-    		System.out.println("--------------------------------"); 
+    		System.out.println("-----------------------------------"); 
     		System.out.println("1. See a Media’s details"); 
     		System.out.println("2. Add a Media to cart"); 
     		System.out.println("3. See current cart");
     		System.out.println("4. Play a Media");
     		System.out.println("0. Exit");
-    		System.out.println("--------------------------------"); 
+    		System.out.println("-----------------------------------"); 
     		System.out.println("Please choose a number: 0-1-2-3-4");
     }
     public static void cartMenu() { 
     		System.out.println("Options: ");
-    		System.out.println("--------------------------------"); 
+    		System.out.println("-------------------------------------"); 
     		System.out.println("1. Filter Medias in cart"); 
     		System.out.println("2. Sort Medias in cart"); 
     		System.out.println("3. Remove Media from cart"); 
@@ -41,7 +41,7 @@ public class Aims {
     		System.out.println("5. Play a Media in cart");
     		System.out.println("6. Place order"); 
     		System.out.println("0. Exit");
-    		System.out.println("--------------------------------");
+    		System.out.println("-------------------------------------");
     		System.out.println("Please choose a number: 0-1-2-3-4-5");
     }
 	public static void main(String[] args) {

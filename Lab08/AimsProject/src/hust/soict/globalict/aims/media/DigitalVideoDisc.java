@@ -35,4 +35,10 @@ public class DigitalVideoDisc extends Disc implements Playable {
 			System.out.println("Cannot play this DVD: "+ this.getTitle() + " because this has the length 0 or less");
 		}
 	}
+	@Override
+	public String toString() {
+		return "ID: " + this.id + " - " + this.getClass().getSimpleName() + " - " + this.getTitle() + " - " 
+				+ this.getCategory() + " - " + this.getDirector() + " - " + this.getLength() 
+				+ ": " + this.getCost() + "$";
+	}
 }

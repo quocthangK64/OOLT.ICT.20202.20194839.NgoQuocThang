@@ -87,7 +87,7 @@ public class Cart {
 //			}
 //		};
 		Collections.sort((java.util.List<Media>)itemsOrdered);
-		System.out.println("===============================CART===============================");
+		System.out.println("===========================================CART===========================================");
 		System.out.println("Ordered items:");
 		if(itemsOrdered.size()==0) System.out.println("Empty."); 
 		else {

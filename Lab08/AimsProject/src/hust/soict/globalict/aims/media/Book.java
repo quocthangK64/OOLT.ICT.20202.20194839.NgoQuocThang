@@ -3,6 +3,8 @@ package hust.soict.globalict.aims.media;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -11,8 +13,8 @@ public class Book extends Media {
 	private List<String> authors = new ArrayList<String>();
 	private List<String> token = new ArrayList<String>();
 //	private int contentLength = token.size();
-	private int[] frequency = new int[1000];
 	private String content;
+	private Map<String,Integer> wordFrequency = new TreeMap<>();
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
@@ -28,17 +30,19 @@ public class Book extends Media {
 	public Book(String title, String category, float cost, String content) {
 		super(title,category,cost);
 		this.content = content.toLowerCase();
+		this.processContent();
 	}
 	public Book(String title, String category, float cost, String[] authors, String content) {
 		super(title,category,cost);
 		this.authors = Arrays.asList(authors);
 		this.content = content.toLowerCase();
+		this.processContent();
 	}
 	private List<String> getAuthors() {
 		return authors;
 	}
 	private int getContentLength() {
-		return this.takeContentLength(this.content);
+		return this.wordFrequency.size();
 	}
 	public void addAuthor(String authorName) {
 		if(authors.contains(authorName)) {
@@ -55,45 +59,37 @@ public class Book extends Media {
 			System.out.println("Author has not been in the list.");
 		}
 	}
+	
 	public void getDetail() {
-    	System.out.println( this.getId() + " " + this.getTitle() + "    " 
-          + this.getCategory() + "       " + this.getContentLength() + 
-          "        " + this.getCost() + "        " + this.getAuthors()
-          +"    " + this.getDateAdded() + "    " + this.getToken()+"     " +this.getFrequency());
+    	System.out.println( "ID: " + this.id + " - " + this.getClass().getSimpleName() + " - " + this.getTitle() + " - " 
+				+ this.getCategory() + " - " + this.getAuthors() + " - " + "Content length : " + this.getContentLength() 
+				+ ": " + this.getCost() + "$" + '\n' + "Token list: " + this.getToken());
     }
-	public int takeContentLength(String content) {
-		int result;
-		String [] arr = content.split("[, ?.@]+");
-		for(int i = 0; i < arr.length; i++) {
-			if(this.token.contains(arr[i])==false) {
-				this.token.add(arr[i]);
-			}
-		}
-		result = this.token.size();
+
+	public List<String> getToken() {
+		List<String> result = new ArrayList<String>();
+		for (Map.Entry <String, Integer> val : this.wordFrequency.entrySet()) {
+            result.add(val.getKey() + " : " + val.getValue());
+        }
 		return result;
 	}
 
-	public List<String> getToken() {
-		this.takeContentLength(this.content);
-		Collections.sort(this.token);
-		return this.token;
-	}
-
-	public List<String> getFrequency() {
-		Arrays.fill(this.frequency, 0);
-		String [] arr = this.content.split("[, ?.@]+");
+	
+	private void processContent() {
+		String [] arr = content.split("[, ?.@]+");
 		for(int i = 0; i < arr.length; i++) {
-			for(int j = 0; j < this.token.size(); j++ ) {
-				if(arr[i].equalsIgnoreCase(this.token.get(j))) {
-					this.frequency[j]++;
-				}
-			}
+				this.token.add(arr[i]);
 		}
-		String strArray[] = new String[this.token.size()];
-        for (int i = 0; i < this.token.size(); i++)
-            strArray[i] = String.valueOf(frequency[i]);
-        List<String> list = new ArrayList<String>();
-        list = Arrays.asList(strArray);
-		return list;
+		Collections.sort(this.token);
+		for (String i : this.token) {
+            Integer j = this.wordFrequency.get(i);
+            this.wordFrequency.put(i, (j == null) ? 1 : j + 1);
+        }
+	}
+	
+	public String toString() {
+		return "ID: " + this.id + " - " + this.getClass().getSimpleName() + " - " + this.getTitle() + " - " 
+					+ this.getCategory() + " - " + this.getAuthors() + " - " + "Content length : " + this.getContentLength() 
+					+ ": " + this.getCost() + "$" + '\n' + "Token list: " + this.getToken(); 
 	}
 }

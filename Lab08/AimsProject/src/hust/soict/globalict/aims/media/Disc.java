@@ -19,9 +19,8 @@ public class Disc extends Media {
 		return director;
 	}
 	public void getDetail() {
-	    System.out.println(this.getId() + " " + this.getTitle() + "    " 
-	    		+ this.getCategory() + "       " + this.getDirector() 
-	    		+ "       " + this.getLength() + "        " 
-	    		+ this.getCost() + "    " + this.getDateAdded());
+	    System.out.println("ID: " + this.id + " - " + this.getClass().getSimpleName() + " - " + this.getTitle() + " - " 
+				+ this.getCategory() + " - " + this.getDirector() + " - " + this.getLength() 
+				+ ": " + this.getCost() + "$");
 	}
 }
