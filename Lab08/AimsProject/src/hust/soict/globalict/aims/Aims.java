@@ -51,7 +51,6 @@ public class Aims {
 		Thread t = new Thread(m);
 		t.setDaemon(true);
 		t.start();
-		
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
 				"Bnimation","Roger Allers", 87, 19.95f);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Stars Wars",
