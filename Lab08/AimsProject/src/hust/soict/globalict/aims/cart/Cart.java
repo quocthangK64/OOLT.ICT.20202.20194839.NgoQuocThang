@@ -15,17 +15,21 @@ public class Cart {
 	public void addMedia(Media m) {
 		if (m == null) System.out.println("This media is not in the store.");
 		else {
+		if(this.itemsOrdered.contains(m)) {
+			System.out.println("This media is already in the cart.");
+		}else {
 		if(this.itemsOrdered.size()<20) {
 			this.itemsOrdered.add(m);
 		}else 
 			System.out.println("The cart is almost full.");
 		}
+		}
 	}
 	public void removeMedia(Media m) {
-		if(this.itemsOrdered.size() > 0) {
+		if(this.itemsOrdered.size() > 0 && this.itemsOrdered.contains(m)) {
 			this.itemsOrdered.remove(m);
 		}else
-			System.out.println("The cart is empty. Nothing to remove.");
+			System.out.println("The cart is empty. Nothing to remove. Or this item is not in the cart.");
 	}
 	// totalCost method
 	public float totalCost() {
@@ -119,7 +123,7 @@ public class Cart {
 			}else count++;
 		}
 		if(count == itemsOrdered.size()) {
-			System.out.println("ID is invalid. That DVD may not be in the cart.");
+			System.out.println("ID is invalid. That Media may not be in the cart.");
 		}
     	}
 	}
@@ -131,7 +135,7 @@ public class Cart {
 			}else count++;
 		}
 		if(count == itemsOrdered.size()) {
-			System.out.println("ID is invalid. That DVD may not be in the cart.");
+			System.out.println("ID is invalid. That Media may not be in the cart.");
 		}
 	}
 	public void emptyCart(){
