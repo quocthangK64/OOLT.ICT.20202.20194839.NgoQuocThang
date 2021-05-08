@@ -84,4 +84,9 @@ public class Store {
 			System.out.println("ID is invalid. That media may not be in the store.");
 		}
 	}
+	
+	public ArrayList<Media> getItemsInStore() {
+		return itemsInStore;
+	}
+	
 }
