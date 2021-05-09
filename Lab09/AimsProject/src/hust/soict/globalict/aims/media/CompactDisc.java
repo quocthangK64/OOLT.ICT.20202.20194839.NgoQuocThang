@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CompactDisc extends Disc implements Playable {
 	private String artist;
-	private ArrayList<Track> tracks = new ArrayList<Track>();
+	public ArrayList<Track> tracks = new ArrayList<Track>();
 	
 	public CompactDisc() {
 		// TODO Auto-generated constructor stub

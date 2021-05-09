@@ -1,7 +1,6 @@
 package hust.soict.globalict.aims.cart;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
@@ -20,6 +19,8 @@ public class Cart {
 		}else {
 		if(this.itemsOrdered.size()<20) {
 			this.itemsOrdered.add(m);
+			//Check for items added to the cart - Lab09
+//			System.out.println(m.getTitle() + " has been added to the cart.");
 		}else 
 			System.out.println("The cart is almost full.");
 		}
@@ -146,7 +147,7 @@ public class Cart {
 	public Media getALuckyItem() {
 		int max = Media.getNbMedia(), min = 1;
 		while(true) {
-			int lucky_id = (int)(Math.random() * (max - min + 1) + min);
+			int lucky_id = (int) (Math.random() * (max - min + 1) + min);
 			for(int i = 0; i < itemsOrdered.size(); i++) {
 			if(itemsOrdered.get(i).getId() == lucky_id) {
 				return itemsOrdered.get(i);
