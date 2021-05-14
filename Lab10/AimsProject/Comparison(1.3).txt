@@ -1,0 +1,17 @@
+1. Compare the top-level containers in Swing and AWT
+
+- They are JFrame, JPanel, JApplet.
+- Swing needs a Container cp = getContentPane() to hold others containers while AWT does not.
+
+2. Compare the class name of components in AWT and corresponding class’s name in Swing
+
+- They are quite similar.
+- Swing has 1 more character 'J' before corresponding class name of components in AWT.
+
+3. Compare the event-handling of Swing and AWT applications
+
+- They are actually the same one because Swing uses event-handling of java.awt
+- We need to import java.awt.event.ActionEvent and java.awt.event.ActionListener to use event-handling in Swing applications.
+
+
+ 
