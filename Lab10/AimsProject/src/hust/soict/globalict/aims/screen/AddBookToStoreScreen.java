@@ -8,14 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.store.Store;
 
 public class AddBookToStoreScreen extends AddItemToStoreScreen{
 	private JTextField tfAuthors;
 	private JTextField tfContent;
-	public AddBookToStoreScreen(Store store) {
-		super(store);
+	public AddBookToStoreScreen(Store store, Cart cart) {
+		super(store, cart);
 		btnOK.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

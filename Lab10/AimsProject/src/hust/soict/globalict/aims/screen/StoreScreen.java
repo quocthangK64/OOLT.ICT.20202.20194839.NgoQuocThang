@@ -46,7 +46,16 @@ public class StoreScreen extends JFrame{
 		
 		menu.add(smUpdateStore);
 		menu.add(new JMenuItem("View store"));
-		menu.add(new JMenuItem("View cart"));
+		JMenuItem smViewCart = new JMenuItem("View cart");
+		menu.add(smViewCart);
+		
+		smViewCart.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CartScreen(cart, store);
+				setVisible(false);
+			}
+		});
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -55,7 +64,7 @@ public class StoreScreen extends JFrame{
 		smAddBook.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddBookToStoreScreen(store);
+				new AddBookToStoreScreen(store, cart);
 				setVisible(false);
 			}
 		});
@@ -63,7 +72,7 @@ public class StoreScreen extends JFrame{
 		smAddCD.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddCompactDiscToStoreScreen(store);
+				new AddCompactDiscToStoreScreen(store, cart);
 				setVisible(false);
 			}
 		});
@@ -71,7 +80,7 @@ public class StoreScreen extends JFrame{
 		smAddDVD.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddDigitalVideoDiscToStoreScreen(store);
+				new AddDigitalVideoDiscToStoreScreen(store, cart);
 				setVisible(false);
 			}
 		});
@@ -89,14 +98,20 @@ public class StoreScreen extends JFrame{
 		title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
 		title.setForeground(Color.CYAN);
 		
-		JButton cart = new JButton("View cart");
-		cart.setPreferredSize(new Dimension(100, 50));
-		cart.setMaximumSize(new Dimension(100, 50));
-		
+		JButton btnCart = new JButton("View cart");
+		btnCart.setPreferredSize(new Dimension(100, 50));
+		btnCart.setMaximumSize(new Dimension(100, 50));
+		btnCart.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CartScreen(cart, store);
+				setVisible(false);
+			}
+		});
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		header.add(title);
 		header.add(Box.createHorizontalGlue());
-		header.add(cart);
+		header.add(btnCart);
 		header.add(Box.createRigidArea(new Dimension(10, 10)));
 		
 		return header;
@@ -170,51 +185,6 @@ public class StoreScreen extends JFrame{
 		}
 	}
 	
-	public class Dialog extends JDialog{
-		private Media media;
-		
-		public Dialog(Media media) {
-			this.media = media;
-			Container cp = getContentPane();
-			cp.setLayout(new BorderLayout());
-			JPanel pn = new JPanel();
-			JLabel lb1 = new JLabel();
-			JLabel lb2 = new JLabel();
-			if(media instanceof CompactDisc) {
-				if(((CompactDisc)media).getLength() != 0) {
-					lb1.setText("Playing CD: " + media.getTitle());
-					lb2.setText("CD length: " + ((CompactDisc) media).getLength());
-					pn.add(lb1);
-					pn.add(lb2);
-					for (int i = 0; i < ((CompactDisc) media).tracks.size(); i++) {
-						pn.add(new JLabel("		Track: " + ((CompactDisc) media).tracks.get(i).getTitle()));
-						pn.add(new JLabel("		Length: " + ((CompactDisc) media).tracks.get(i).getLength()));
-					}
-				}
-				else {
-					pn.add(new JLabel("Cannot play this CD: "+ media.getTitle()));
-				}
-			}
-			else {
-				if(((DigitalVideoDisc)media).getLength() != 0) {
-					lb1.setText("Playing DVD: " + media.getTitle());
-					lb2.setText("DVD length: " + ((DigitalVideoDisc) media).getLength());
-					pn.add(lb1);
-					pn.add(lb2);
-				}
-				else {
-					pn.add(new JLabel("Cannot play this DVD: "+ media.getTitle()));
-				}
-			}
-			cp.add(pn, BorderLayout.CENTER);
-			
-			this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			this.setTitle("Play");
-			this.setSize(235, 200);
-			this.setVisible(true);
-			this.setResizable(false);
-		}
-	}
 	public static void main(String[] args) {
 		Store s = new Store();
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",

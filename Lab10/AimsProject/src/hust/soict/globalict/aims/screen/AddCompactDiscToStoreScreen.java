@@ -8,14 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.store.Store;
 
 
 public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen{
 	private JTextField tfDirector;
-	public AddCompactDiscToStoreScreen(Store store) {
-		super(store);
+	public AddCompactDiscToStoreScreen(Store store, Cart cart) {
+		super(store, cart);
 		btnOK.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

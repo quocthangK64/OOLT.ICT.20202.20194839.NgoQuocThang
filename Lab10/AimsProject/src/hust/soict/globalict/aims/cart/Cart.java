@@ -1,28 +1,32 @@
 package hust.soict.globalict.aims.cart;
-import java.util.ArrayList;
 import java.util.Collections;
+
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class Cart {
 	
 	public static final int MAX_NUMBERS_ORDERED = 20;
 	// using array_list instead of array
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 	
 	// update addMedia and removeMedia
 	public void addMedia(Media m) {
 		if (m == null) System.out.println("This media is not in the store.");
 		else {
 		if(this.itemsOrdered.contains(m)) {
-			System.out.println("This media is already in the cart.");
+			JOptionPane.showMessageDialog(null, "This media is already in the cart.");
 		}else {
 		if(this.itemsOrdered.size()<20) {
 			this.itemsOrdered.add(m);
 			//Check for items added to the cart - Lab09
 //			System.out.println(m.getTitle() + " has been added to the cart.");
 		}else 
-			System.out.println("The cart is almost full.");
+			JOptionPane.showMessageDialog(null, "The cart is almost full.");
 		}
 		}
 	}
@@ -141,7 +145,7 @@ public class Cart {
 	}
 	public void emptyCart(){
 	    itemsOrdered.clear();
-	    System.out.println("Place order successfully. An order is created.");
+	    JOptionPane.showMessageDialog(null, "Place order successfully. An order is created.");
 	}
 	// -----------Lab06----------------
 	public Media getALuckyItem() {
@@ -161,7 +165,7 @@ public class Cart {
 		for(Media item : itemsOrdered) {
 			if(item.getId()==id) {
 				if(item.getClass().getSimpleName().equals("Book")) {
-					System.out.println("You had already chosen a book which cannot be played.");
+					JOptionPane.showMessageDialog(null, "You had already chosen a book which cannot be played.");
 				}else {
 					if(item.getClass().getSimpleName().equals("DigitalVideoDisc")) {
 						DigitalVideoDisc dvd = (DigitalVideoDisc) item;
@@ -178,7 +182,13 @@ public class Cart {
 			}else count++;
 		}
 		if(count == itemsOrdered.size()) {
-			System.out.println("ID is invalid. That media may not be in the cart.");
+			JOptionPane.showMessageDialog(null, "ID is invalid. That media may not be in the cart.");
 		}
 	}
+	
+	public ObservableList<Media> getItemsOrdered() {
+		return itemsOrdered;
+	}
+	
+	
 }

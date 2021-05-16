@@ -1,5 +1,6 @@
 package hust.soict.globalict.aims.screen;
 
+import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.store.Store;
 import java.awt.GridLayout;
@@ -10,8 +11,8 @@ import javax.swing.*;
 public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen{
 	private JTextField tfDirector;
 	private JTextField tfLength;
-	public AddDigitalVideoDiscToStoreScreen(Store store) {
-		super(store);
+	public AddDigitalVideoDiscToStoreScreen(Store store, Cart cart) {
+		super(store, cart);
 		btnOK.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -9,13 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 public abstract class AddItemToStoreScreen extends JFrame{
 	private Store store;
-	protected Cart cart;
+	private Cart cart;
 	protected JTextField tfTitle;
 	protected JTextField tfCategory;
 	protected JTextField tfCost;
 	protected JButton btnOK;
-	public AddItemToStoreScreen(Store store) {
+	public AddItemToStoreScreen(Store store, Cart cart) {
 		this.store = store;
+		this.cart = cart;
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		cp.add(createNorth(), BorderLayout.NORTH);
@@ -26,6 +27,7 @@ public abstract class AddItemToStoreScreen extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500, 300);
 		setVisible(true);
+		setLocation(400,300);
 	}
 	
 	JMenuBar createMenuBar() {

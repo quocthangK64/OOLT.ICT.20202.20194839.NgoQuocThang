@@ -1,5 +1,7 @@
 package hust.soict.globalict.aims.media;
 
+import javax.swing.JOptionPane;
+
 public class DigitalVideoDisc extends Disc implements Playable {
     //Question in part 5. Create Constructor method
     //Answer: Yes. JAVA allow us to do this. It's called overloading method
@@ -29,10 +31,9 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	@Override
 	public void play() {
 		if(this.getLength() > 0) {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+		JOptionPane.showMessageDialog(null, "Playing DVD: " + this.getTitle() + "\n" + "DVD length: " + this.getLength());
 		}else {
-			System.out.println("Cannot play this DVD: "+ this.getTitle() + " because this has the length 0 or less");
+			JOptionPane.showMessageDialog(null, "Cannot play this DVD: "+ this.getTitle() + " because this has the length 0 or less");
 		}
 	}
 	@Override
