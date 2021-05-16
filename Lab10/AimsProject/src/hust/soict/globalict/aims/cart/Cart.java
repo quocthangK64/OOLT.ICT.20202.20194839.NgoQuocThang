@@ -145,7 +145,7 @@ public class Cart {
 	}
 	public void emptyCart(){
 	    itemsOrdered.clear();
-	    JOptionPane.showMessageDialog(null, "Place order successfully. An order is created.");
+	    System.out.println("Place order successfully. An order is created.");
 	}
 	// -----------Lab06----------------
 	public Media getALuckyItem() {

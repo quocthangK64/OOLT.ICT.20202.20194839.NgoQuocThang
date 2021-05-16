@@ -164,6 +164,17 @@ public class StoreScreen extends JFrame{
 					cart.addMedia(media);
 				}
 			});
+			
+			JButton btnRemove = new JButton("Remove");
+			container.add(btnRemove);
+			btnRemove.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					store.removeMedia(media);
+					setVisible(false);
+				}
+			});
+			
 			if(media instanceof Playable) {
 				JButton btnPlay = new JButton("Play");
 				container.add(btnPlay);

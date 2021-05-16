@@ -1,15 +1,9 @@
 package hust.soict.globalict.aims.screen;
 
-
 import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.media.Book;
-import hust.soict.globalict.aims.media.CompactDisc;
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
-import hust.soict.globalict.aims.media.Track;
 import hust.soict.globalict.aims.store.Store;
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;
