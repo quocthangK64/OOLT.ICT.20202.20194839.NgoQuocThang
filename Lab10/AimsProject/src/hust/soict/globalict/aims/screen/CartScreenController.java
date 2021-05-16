@@ -69,7 +69,6 @@ public class CartScreenController {
 		colMediaCost.setCellValueFactory(
 				new PropertyValueFactory<Media, String>("cost"));
 		tblMedia.setItems(this.cart.getItemsOrdered());
-		
 		btnPlay.setVisible(false);
 		btnRemove.setVisible(false);
 		tblMedia.getSelectionModel().selectedItemProperty().addListener(
