@@ -1,6 +1,7 @@
 package hust.soict.globalict.aims.store;
 import java.util.ArrayList;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
@@ -59,7 +60,7 @@ public class Store {
 		return null;
 	}
 	
-	public void play(int id) {
+	public void play(int id) throws PlayerException {
 		int count = 0;
 		for(Media item : itemsInStore) {
 			if(item.getId()==id) {

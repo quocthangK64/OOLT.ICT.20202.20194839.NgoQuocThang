@@ -4,6 +4,7 @@ import java.util.Collections;
 import javax.naming.LimitExceededException;
 import javax.swing.JOptionPane;
 
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
@@ -165,7 +166,7 @@ public class Cart {
 		}
 	}
 	// -----------Lab07--------------
-	public void play(int id) {
+	public void play(int id) throws PlayerException {
 		int count = 0;
 		for(Media item : itemsOrdered) {
 			if(item.getId()==id) {
