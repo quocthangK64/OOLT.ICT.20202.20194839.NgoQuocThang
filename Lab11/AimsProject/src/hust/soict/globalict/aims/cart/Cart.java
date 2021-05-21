@@ -1,6 +1,7 @@
 package hust.soict.globalict.aims.cart;
 import java.util.Collections;
 
+import javax.naming.LimitExceededException;
 import javax.swing.JOptionPane;
 
 import hust.soict.globalict.aims.media.CompactDisc;
@@ -15,18 +16,17 @@ public class Cart {
 	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 	
 	// update addMedia and removeMedia
-	public void addMedia(Media m) {
+	public void addMedia(Media m) throws LimitExceededException {
 		if (m == null) System.out.println("This media is not in the store.");
 		else {
 		if(this.itemsOrdered.contains(m)) {
 			JOptionPane.showMessageDialog(null, "This media is already in the cart.");
 		}else {
-		if(this.itemsOrdered.size()<20) {
+		if(this.itemsOrdered.size()< MAX_NUMBERS_ORDERED) {
 			this.itemsOrdered.add(m);
-			//Check for items added to the cart - Lab09
-//			System.out.println(m.getTitle() + " has been added to the cart.");
 		}else 
-			JOptionPane.showMessageDialog(null, "The cart is almost full.");
+			throw new LimitExceededException("ERROR: The number of "
+					+ "media has reached its limit");
 		}
 		}
 	}
@@ -132,11 +132,16 @@ public class Cart {
 		}
     	}
 	}
-	public void addMedia(int id) {
+	public void addMedia(int id) throws LimitExceededException{
 		int count = 0;
 		for(int i = 0; i < itemsOrdered.size(); i++) {
 			if(itemsOrdered.get(i).getId() == id) {
-				this.addMedia(itemsOrdered.get(i));
+				if(itemsOrdered.size() < MAX_NUMBERS_ORDERED) {
+					this.addMedia(itemsOrdered.get(i));
+				}else {
+					throw new LimitExceededException("ERROR: The number of "
+							+ "media has reached its limit");
+				}	
 			}else count++;
 		}
 		if(count == itemsOrdered.size()) {

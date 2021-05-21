@@ -1,10 +1,12 @@
 package hust.soict.globalict.aims;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 
 public class DiskTest {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException {
 		
         Cart anOrder = new Cart();
 		

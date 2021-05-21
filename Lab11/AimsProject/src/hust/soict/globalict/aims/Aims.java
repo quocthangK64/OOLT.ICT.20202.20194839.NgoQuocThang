@@ -1,6 +1,8 @@
 package hust.soict.globalict.aims;
 import java.util.Scanner;
 
+import javax.naming.LimitExceededException;
+
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.CompactDisc;
@@ -44,7 +46,7 @@ public class Aims {
     		System.out.println("-------------------------------------");
     		System.out.println("Please choose a number: 0-1-2-3-4-5");
     }
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException {
 		Store store = new Store();
 		Cart anOrder = new Cart();
 		MemoryDaemon m = new MemoryDaemon();

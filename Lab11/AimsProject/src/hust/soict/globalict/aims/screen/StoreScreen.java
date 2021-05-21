@@ -1,5 +1,6 @@
 package hust.soict.globalict.aims.screen;
 
+import javax.naming.LimitExceededException;
 import javax.swing.*;
 import java.awt.*;
 import hust.soict.globalict.aims.store.Store;
@@ -161,7 +162,12 @@ public class StoreScreen extends JFrame{
 			btnAddToCart.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					cart.addMedia(media);
+					try {
+						cart.addMedia(media);
+					} catch (LimitExceededException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 			
