@@ -1,6 +1,10 @@
 package hust.soict.globalict.aims.screen;
 
+import javax.naming.LimitExceededException;
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exception.UnderThresholdsException;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
 import hust.soict.globalict.aims.store.Store;
@@ -52,6 +56,9 @@ public class CartScreenController {
 	@FXML
 	private Label lblTotalCost;
 	
+	@FXML
+	private Button btnGetLuckyItem;
+	
 	
 	public CartScreenController(Cart cart, Store store) {
 		super();
@@ -71,6 +78,13 @@ public class CartScreenController {
 		tblMedia.setItems(this.cart.getItemsOrdered());
 		btnPlay.setVisible(false);
 		btnRemove.setVisible(false);
+		// This is for do not use UnderThresholdsException 
+//		if(this.cart.totalCost() > 100 && this.cart.getItemsOrdered().size() >= 5) {
+//			btnGetLuckyItem.setVisible(true);
+//		}else {
+//			btnGetLuckyItem.setVisible(false);
+//		}
+		try{
 		tblMedia.getSelectionModel().selectedItemProperty().addListener(
 				new ChangeListener<Media>() {
 					
@@ -82,6 +96,9 @@ public class CartScreenController {
 						}
 					}
 				});
+		}catch(NullPointerException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		tfFilter.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -163,5 +180,33 @@ public class CartScreenController {
 	@FXML
 	void btnViewStorePressed(ActionEvent event) {
 		new StoreScreen(this.store,this.cart);
+	}
+	
+	@FXML
+	void btnGetLuckyItemPressed(ActionEvent event) {
+		Media lucky_item = null;
+		try {
+			lucky_item = this.cart.getALuckyItem(store);
+			if(this.cart.getItemsOrdered().contains(lucky_item)) {
+				this.cart.removeMedia(lucky_item);
+				lucky_item.setFree();
+				this.cart.addMedia(lucky_item);
+			}else {
+				lucky_item.setFree();
+				this.cart.addMedia(lucky_item);
+			}
+		} catch (UnderThresholdsException e1) {
+			// TODO Auto-generated catch block
+			System.err.println(e1.getMessage());
+			e1.printStackTrace();
+		} catch (NullPointerException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (LimitExceededException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+		lblTotalCost.setText(this.cart.totalCost() + " $");
+		btnGetLuckyItem.setVisible(false);
 	}
 }

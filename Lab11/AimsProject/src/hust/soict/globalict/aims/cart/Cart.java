@@ -5,9 +5,11 @@ import javax.naming.LimitExceededException;
 import javax.swing.JOptionPane;
 
 import hust.soict.globalict.aims.exception.PlayerException;
+import hust.soict.globalict.aims.exception.UnderThresholdsException;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
+import hust.soict.globalict.aims.store.Store;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 public class Cart {
@@ -21,7 +23,7 @@ public class Cart {
 		if (m == null) System.out.println("This media is not in the store.");
 		else {
 		if(this.itemsOrdered.contains(m)) {
-			JOptionPane.showMessageDialog(null, "This media is already in the cart.");
+			System.out.println("This media is already in the cart.");
 		}else {
 		if(this.itemsOrdered.size()< MAX_NUMBERS_ORDERED) {
 			this.itemsOrdered.add(m);
@@ -154,16 +156,29 @@ public class Cart {
 	    System.out.println("Place order successfully. An order is created.");
 	}
 	// -----------Lab06----------------
-	public Media getALuckyItem() {
-		int max = Media.getNbMedia(), min = 1;
-		while(true) {
-			int lucky_id = (int) (Math.random() * (max - min + 1) + min);
-			for(int i = 0; i < itemsOrdered.size(); i++) {
-			if(itemsOrdered.get(i).getId() == lucky_id) {
-				return itemsOrdered.get(i);
-			}
-			}
+	public Media getALuckyItem(Store store) throws UnderThresholdsException{
+		if(this.totalCost() > 100 && this.itemsOrdered.size() >= 5) {
+			// probability to get lucky item is 66.67%
+			int max = 3, min = 1;
+			int probability = (int) (Math.random() * (max - min + 1) + min);
+			if(probability == 3) { // fail to get lucky item
+				System.out.println("Unluckily :(((");
+				return null;
+			}else {
+					for(int i = 0; i < store.itemsInStore.size(); i++) {
+						if(this.totalCost() <= 200 && store.itemsInStore.get(i).getCost() <= 50) {
+							return store.itemsInStore.get(i);
+						}else if(this.totalCost() <= 300 && store.itemsInStore.get(i).getCost() <= 75){
+							return store.itemsInStore.get(i);
+						}else if(store.itemsInStore.get(i).getCost() <= 100){
+							return store.itemsInStore.get(i);
+						}
+					}
+			}	
+		}else {
+			throw new UnderThresholdsException("Cannot get a lucky item");
 		}
+		return null;
 	}
 	// -----------Lab07--------------
 	public void play(int id) throws PlayerException {

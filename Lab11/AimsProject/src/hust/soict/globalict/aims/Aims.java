@@ -2,9 +2,11 @@ package hust.soict.globalict.aims;
 import java.util.Scanner;
 
 import javax.naming.LimitExceededException;
+import javax.swing.JOptionPane;
 
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.exception.PlayerException;
+import hust.soict.globalict.aims.exception.UnderThresholdsException;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
@@ -47,7 +49,7 @@ public class Aims {
     		System.out.println("-------------------------------------");
     		System.out.println("Please choose a number: 0-1-2-3-4-5");
     }
-	public static void main(String[] args) throws LimitExceededException, PlayerException {
+	public static void main(String[] args){
 		Store store = new Store();
 		Cart anOrder = new Cart();
 		MemoryDaemon m = new MemoryDaemon();
@@ -69,18 +71,11 @@ public class Aims {
 	    // Lab07 create a CD and add to store
 	    CompactDisc cd1 = new CompactDisc("Bandcamp","Jacam Manricks Music",2.05f);
 	    Track t1 =  new Track("HOW SHALLOW", 5);
-	    Track t2 = new Track("SlIPPERY", 4);
+	    Track t2 = new Track("SlIPPERY", 0);
 	    Track t3 = new Track("INTERCEPT", 6);
 	    cd1.addTrack(t1);
 	    cd1.addTrack(t2);
 	    cd1.addTrack(t3);
-		anOrder.addMedia(dvd1);
-		anOrder.addMedia(dvd4);
-		anOrder.addMedia(dvd2);
-		anOrder.addMedia(dvd3);
-		anOrder.addMedia(dvd5);
-		anOrder.addMedia(b1);
-		anOrder.addMedia(b2);
 	    // section 6 Lab05
 	    int main_choice;
 	    int store_choice;
@@ -116,13 +111,24 @@ public class Aims {
 	    	        		System.out.println("Do you want to add this to your cart (Y or N)?");
 	    	        		String yes_no;
 	    	        		yes_no = sc.next();
-	    	        		if(yes_no.equals("Y")) anOrder.addMedia(store.disc(id));
+	    	        		if(yes_no.equals("Y"))
+								try {
+									anOrder.addMedia(store.disc(id));
+								} catch (LimitExceededException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 	    	        		break;
 	    	        	case 2:
 	    	        		System.out.println("Enter ID of Media that you want to add to your cart:");
 	    	        		int Id;
 	    	        		Id = sc.nextInt();
-	    	        		anOrder.addMedia(store.disc(Id));
+	    	        		try {
+	    	        			anOrder.addMedia(store.disc(Id));
+	    	        		} catch (LimitExceededException e) {
+	    	        			// TODO Auto-generated catch block
+	    	        			e.printStackTrace();
+	    	        		}
 	    	        		break;
 	    	        	case 3:
 	    	        		anOrder.Printlist();
@@ -130,7 +136,16 @@ public class Aims {
 	    	        	case 4:
 	    	        		System.out.println("Enter ID of Media that you want to play:");
 	    	        		id = sc.nextInt();
-	    	        		store.play(id);
+	    	        		try {
+	    	        			store.play(id);
+	    	        		} catch (PlayerException e) {
+	    	        			// TODO Auto-generated catch block
+	    	        			e.printStackTrace();
+	    	        			// toString will show hust.soict.globalict.aims.exception.PlayerException: 
+	    	        			// ERROR : DVD length is non-positive
+	    	        			//JOptionPane.showMessageDialog(null, e.toString());
+	    	        			JOptionPane.showMessageDialog(null, e.getMessage());
+	    	        		}
 	    	        		break;
 	    	        	case 0:
 	    	        		break;
@@ -232,13 +247,32 @@ public class Aims {
 	    					anOrder.removeMedia(id);
 	    					break;
 	    				case 4:
-	    					Media lucky_item = anOrder.getALuckyItem();
-	    					lucky_item.setFree();
+	    					Media lucky_item = null;
+	    					try {
+	    						lucky_item = anOrder.getALuckyItem(store);
+	    						lucky_item.setFree();
+	    						anOrder.addMedia(lucky_item);
+	    					} catch (UnderThresholdsException e1) {
+	    						// TODO Auto-generated catch block
+	    						e1.printStackTrace();
+	    					} catch (NullPointerException e2) {
+	    						// TODO Auto-generated catch block
+	    						e2.printStackTrace();
+	    					} catch (LimitExceededException e3) {
+								// TODO Auto-generated catch block
+								e3.printStackTrace();
+							}
 	    					break;
 	    				case 5:
 	    					System.out.println("Enter ID of Media that you want to play in the cart:");
 	    	        		id = sc.nextInt();
-	    	        		anOrder.play(id);
+	    	        		try {
+	    	        			anOrder.play(id);
+	    	        		} catch (PlayerException e) {
+	    	        			// TODO Auto-generated catch block
+	    	        			e.printStackTrace();
+	    	        			JOptionPane.showMessageDialog(null, e.toString());
+	    	        		}
 	    					break;
 	    				case 6:
 	    					anOrder.emptyCart();

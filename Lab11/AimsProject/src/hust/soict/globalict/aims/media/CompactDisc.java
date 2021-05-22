@@ -2,6 +2,8 @@ package hust.soict.globalict.aims.media;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable {
@@ -56,6 +58,7 @@ public class CompactDisc extends Disc implements Playable {
 				try {
 					tracks.get(i).play();
 				}catch(PlayerException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
 					throw e;
 				}
 			}

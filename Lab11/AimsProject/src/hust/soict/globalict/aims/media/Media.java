@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
+import javax.swing.JOptionPane;
+
 import hust.soict.globalict.aims.utils.MediaComparatorByCostTitle;
 import hust.soict.globalict.aims.utils.MediaComparatorByTitleCost;
 
@@ -82,13 +84,17 @@ public abstract class Media implements Comparable<Media>{
     	return false;
     }
     @Override
-    public boolean equals(Object obj) {
-    	if(obj instanceof Media) {
-    		Media m = (Media) obj;
-    		return this.id == m.id;
-    	}else {
-    		return false;
-    	}
+    public boolean equals(Object obj) throws NullPointerException{
+    		try {
+    			Media m = (Media) obj;
+    			return (this.title.equals(m.getTitle()) && this.cost == m.getCost());
+    		} 
+    		catch (NullPointerException e) {
+    			throw new NullPointerException("Obj is null");
+    		}
+    		catch (ClassCastException e){
+    			throw new ClassCastException("Wrong class type casting (Media)");
+    		}
     }
     @Override
     public int compareTo(Media o) {

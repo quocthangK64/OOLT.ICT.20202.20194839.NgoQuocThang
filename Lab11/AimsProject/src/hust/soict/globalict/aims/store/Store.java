@@ -60,7 +60,7 @@ public class Store {
 		return null;
 	}
 	
-	public void play(int id) throws PlayerException {
+	public void play(int id) throws PlayerException{
 		int count = 0;
 		for(Media item : itemsInStore) {
 			if(item.getId()==id) {

@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.exception.PlayerException;
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
@@ -188,7 +189,12 @@ public class StoreScreen extends JFrame{
 				btnPlay.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						new Dialog(media);
+						try {
+							((Playable) media).play();
+						} catch (PlayerException e1) {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(null, e1.getMessage());
+						}
 					}
 				});
 			}
